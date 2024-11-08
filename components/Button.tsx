@@ -1,12 +1,6 @@
 import { colors } from "@/constraints/color";
 import React from "react";
-import {
-  Pressable,
-  StyleProp,
-  StyleSheet,
-  Text,
-  TextStyle,
-} from "react-native";
+import { Pressable, StyleProp, StyleSheet, TextStyle } from "react-native";
 
 interface ButtonProps {
   style?: StyleProp<TextStyle>;
