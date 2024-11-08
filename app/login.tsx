@@ -5,6 +5,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "@/constraints/color";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
+import { Link } from "expo-router";
 
 export default function login() {
   return (
@@ -55,7 +56,7 @@ export default function login() {
             }}
           />
         </View>
-        <View>
+        <View style={{ gap: 13 }}>
           <Text
             style={{
               color: colors.textPrimary,
@@ -88,27 +89,15 @@ export default function login() {
         </Text>
       </View>
       <Button>
-        <Text
-          style={{
-            color: colors.textPrimary,
-            fontWeight: "600",
-            fontSize: 16,
-          }}
-        >
-          Login
-        </Text>
+        <Text style={globalStyles.ButtonText}>Login</Text>
       </Button>
-      <Text
-        style={{
-          color: colors.textPrimary,
-          fontWeight: "600",
-          fontSize: 16,
-        }}
-      >
+      <Text style={globalStyles.ButtonText}>
         Don't have an account?{" "}
-        <Text style={{ color: "#706EFF", textDecorationLine: "underline" }}>
-          Sign up
-        </Text>
+        <Link href="/signup">
+          <Text style={{ color: "#706EFF", textDecorationLine: "underline" }}>
+            Sign up
+          </Text>
+        </Link>
       </Text>
     </LinearGradient>
   );
