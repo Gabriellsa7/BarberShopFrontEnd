@@ -20,26 +20,10 @@ export default function InitialPage() {
       </View>
       <View style={{ gap: 24 }}>
         <Button onPress={() => router.push("/login")}>
-          <Text
-            style={{
-              color: colors.textPrimary,
-              fontWeight: "600",
-              fontSize: 16,
-            }}
-          >
-            Login
-          </Text>
+          <Text style={globalStyles.ButtonText}>Login</Text>
         </Button>
-        <Button>
-          <Text
-            style={{
-              color: colors.textPrimary,
-              fontWeight: "600",
-              fontSize: 16,
-            }}
-          >
-            Sign Up
-          </Text>
+        <Button onPress={() => router.push("/signup")}>
+          <Text style={globalStyles.ButtonText}>Sign Up</Text>
         </Button>
       </View>
     </LinearGradient>
