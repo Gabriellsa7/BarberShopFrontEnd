@@ -1,16 +1,46 @@
-import { View, Text, Image } from "react-native";
-import React from "react";
+import { View, Text, Image, Alert } from "react-native";
+import React, { useState } from "react";
 import { globalStyles } from "@/styles/globalStyles";
 import { LinearGradient } from "expo-linear-gradient";
 import { colors } from "@/constraints/color";
 import Input from "@/components/Input";
 import Button from "@/components/Button";
 import Constants from "expo-constants";
-import { Link } from "expo-router";
+import { Link, useRouter } from "expo-router";
+import { createClient } from "@/api/client-service";
 
 const statusBarHeight = Constants.statusBarHeight;
 
-export default function login() {
+export default function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const router = useRouter();
+
+  const handleSubmit = async () => {
+    if (!name || !email || !password) {
+      Alert.alert("Erro", "Todos os campos são obrigatórios.");
+      return;
+    }
+
+    try {
+      const clientData = { name, email, password };
+      const newClient = await createClient(clientData);
+      Alert.alert(
+        "Sucesso",
+        `Cliente ${newClient.name} cadastrado com sucesso!`
+      );
+      setName("");
+      setEmail("");
+      setPassword("");
+
+      // Redirecionar para a página de login
+      router.push("/login");
+    } catch (error) {
+      Alert.alert("Erro", "Não foi possível cadastrar o cliente.");
+    }
+  };
+
   return (
     <LinearGradient
       colors={["#141518", "#221C3D"]} // Cores do gradiente
@@ -51,8 +81,10 @@ export default function login() {
           >
             Name
           </Text>
+
           <Input
-            placeholder="Enter your Email"
+            onChange={setName}
+            placeholder="Enter your Name"
             style={{
               borderRadius: 10,
               backgroundColor: "#FFFFFF",
@@ -72,7 +104,9 @@ export default function login() {
           >
             Email
           </Text>
+
           <Input
+            onChange={setEmail}
             placeholder="Enter your Email"
             style={{
               borderRadius: 10,
@@ -93,7 +127,9 @@ export default function login() {
           >
             Password
           </Text>
+
           <Input
+            onChange={setPassword}
             placeholder="Enter your Password"
             style={{
               borderRadius: 10,
@@ -105,7 +141,7 @@ export default function login() {
           />
         </View>
       </View>
-      <Button>
+      <Button onPress={handleSubmit}>
         <Text style={globalStyles.ButtonText}>Sign Up</Text>
       </Button>
       <Text style={globalStyles.ButtonText}>
