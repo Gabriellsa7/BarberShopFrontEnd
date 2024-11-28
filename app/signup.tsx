@@ -129,7 +129,7 @@ export default function SignUp() {
           </Text>
 
           <Input
-            onChange={setPassword}
+          onChange={setPassword}
             placeholder="Enter your Password"
             style={{
               borderRadius: 10,
